@@ -18,10 +18,9 @@ class ViewBlacklist(Resource):
             else:
                 return 'false',200
         else:
-            blacklist = ListaNegraEmails.query.all()
-            blacklist_schema = ListaNegraEmailsSchema(many=True)
-            return blacklist_schema.dump(blacklist), 200
+            return "", 404
 
+    #endpoing creacion de item en lista negra
     def post(self):
         data = request.json
         email = data.get('email')
@@ -45,5 +44,5 @@ class ViewBlacklist(Resource):
         db.session.commit()
 
         # Return the created item
-        blacklist_schema = ListaNegraEmailsSchema()
-        return blacklist_schema.dump(blacklist_item), 201
+        message = f'Email {email} added to blacklist'
+        return {"message":message}, 201
