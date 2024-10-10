@@ -1,5 +1,9 @@
 # 202415-devops-compumundohipermegared
 
+## montaje basico de la herramienta
+
+Abra Docker en su sistema Linux. En la raiz de este proyecto corra el script "run_docker_compose.sh". Este le ayudara a montar el contenedor de bd de prueba y el contenedor de la app para sus pruebas con postman.
+
 ## Estructura de Carpetas
 
 ```
