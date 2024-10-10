@@ -4,6 +4,8 @@
 
 Abra Docker en su sistema Linux. En la raiz de este proyecto corra el script "run_docker_compose.sh". Este le ayudara a montar el contenedor de bd de prueba y el contenedor de la app para sus pruebas con postman.
 
+Si quiere montar por separado los contenedores puede usar los scripts "mount_dev_app_container.sh" y "mount_dev_db.sh" corriendolos en las carpetas donde se encuentran.
+
 ## Estructura de Carpetas
 
 ```

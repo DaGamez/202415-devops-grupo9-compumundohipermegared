@@ -1,0 +1,1 @@
+Con sistema linux puede pararse en esta carpeta y correr el script "mount_dev_db.sh" para montar el contenedor de desarrollo en postgres.
