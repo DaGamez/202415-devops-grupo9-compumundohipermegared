@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: black_list_local_app
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_HOST=black_list_local_db
+    depends_on:
+      black_list_local_db:
+        condition: service_healthy
+    networks:
+      - black_list_network
+
+  black_list_local_db:
+    build:
+      context: ./local_dev_db
+      dockerfile: Dockerfile
+    container_name: black_list_local_db
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - black_list_network
+
+networks:
+  black_list_network:
+    driver: bridge
