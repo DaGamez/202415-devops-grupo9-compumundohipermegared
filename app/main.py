@@ -6,6 +6,8 @@ import logging
 from models.models import db
 from views.ping import ViewPing
 from views.blacklist import ViewBlacklist
+import time
+from sqlalchemy.exc import OperationalError
 
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
@@ -37,8 +39,21 @@ def create_flask_app(db_dir):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
+    max_retries = 5
+    retry_delay = 5
+
     with app.app_context():
-        db.create_all()  
+        for attempt in range(max_retries):
+            try:
+                db.create_all()
+                break
+            except OperationalError as e:
+                if attempt < max_retries - 1:
+                    print(f"Database connection attempt {attempt + 1} failed. Retrying in {retry_delay} seconds...")
+                    time.sleep(retry_delay)
+                else:
+                    print("Failed to connect to the database after multiple attempts.")
+                    raise e
     
     add_resources_urls(app)
 
