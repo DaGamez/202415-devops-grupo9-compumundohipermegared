@@ -30,12 +30,36 @@ Descripción de los archivos y carpetas:
 Esta estructura está pensada para facilitar el despliegue en Elastic Beanstalk, además de organizar adecuadamente el código.
 
 
-## Despliegue de aplicación manual
+## Despliegue manual en Elastic Beanstalk
 
 - Comprimir en un zip: /app application.py requirements.txt .ebextensions
 - Cargar e implementar en Elastic Beanstalk
 - Configurar variables de entorno en Elastic Beanstalk
 
+## Despliegue con imagen de Docker Elastic Beanstalk
+
+### Autenticar Docker CLI con el Amazon Elastic Container Registry
+``` bash
+aws --profile [perfil-aws] ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 061039766984.dkr.ecr.us-east-2.amazonaws.com
+```
+
+### Crear y subir imagen
+
+``` bash
+docker build -t blacklist_app .
+docker tag blacklist_app:latest 061039766984.dkr.ecr.us-east-2.amazonaws.com/blacklistservice:latest
+docker push 061039766984.dkr.ecr.us-east-2.amazonaws.com/blacklistservice:latest
+
+```
+### Desplegar en Elastic Beanstalk
+
+``` bash
+- Crear entorno Elastic Beanstalk con Docker
+- Agregar variables de entorno
+- Copiar URI de imagen de ECR en Dockerrun.aws.json
+- Cargar e implementar Elastic Beanstalk subiendo Dockerrun.aws.json
+
+```
 
 ## Ejecutar local
 
