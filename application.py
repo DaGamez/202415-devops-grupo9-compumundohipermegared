@@ -6,10 +6,10 @@ from app.routes import api_bp
 
 application = Flask(__name__)
 
-db_user = os.getenv('RDS_USERNAME', 'blacklist')
-db_password = os.getenv('RDS_PASSWORD', '%r&GRHJJu786')
+db_user = os.getenv('RDS_USERNAME', 'postgres')
+db_password = os.getenv('RDS_PASSWORD', 'postgres')
 db_host = os.getenv('RDS_HOSTNAME', 'localhost')
-db_name = os.getenv('RDS_DB_NAME', 'ebdb')
+db_name = os.getenv('RDS_DB_NAME', 'postgres')
 db_port = os.getenv('RDS_PORT', '5432')
 
 application.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
@@ -34,4 +34,4 @@ def index():
 
 if __name__ == "__main__":
     application.debug = True
-    application.run()
+    application.run(host='0.0.0.0')

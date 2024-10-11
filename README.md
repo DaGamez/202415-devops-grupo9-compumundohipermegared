@@ -28,3 +28,38 @@ Descripción de los archivos y carpetas:
 - **README.md**: Instrucciones y detalles del proyecto.
 
 Esta estructura está pensada para facilitar el despliegue en Elastic Beanstalk, además de organizar adecuadamente el código.
+
+
+## Despliegue de aplicación manual
+
+- Comprimir en un zip: /app application.py requirements.txt .ebextensions
+- Cargar e implementar en Elastic Beanstalk
+- Configurar variables de entorno en Elastic Beanstalk
+
+
+## Ejecutar local
+
+### Iniciar todos los servicios
+``` bash
+ cd scripts
+ chmod +x local.sh
+ ./local.sh
+
+```
+
+### Iniciar unicamente base de datos
+``` bash
+ cd scripts
+ chmod +x db.sh
+ ./db.sh
+
+```
+
+### Ejecutar unicamente aplicación
+
+``` bash
+ docker build -t blacklist_app .
+ docker run -d -p 5000:5000 --name flask_app blacklist_app
+
+```
+
