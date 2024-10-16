@@ -65,17 +65,15 @@ docker push 061039766984.dkr.ecr.us-east-2.amazonaws.com/blacklistservice:latest
 
 ### Iniciar todos los servicios
 ``` bash
- cd scripts
- chmod +x local.sh
- ./local.sh
+ chmod +x scripts/local.sh
+ ./scripts/local.sh
 
 ```
 
 ### Iniciar unicamente base de datos
 ``` bash
- cd scripts
- chmod +x db.sh
- ./db.sh
+ chmod +x scripts/db.sh
+ ./scripts/db.sh
 
 ```
 
