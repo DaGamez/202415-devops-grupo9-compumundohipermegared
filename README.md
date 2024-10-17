@@ -63,10 +63,17 @@ docker push 061039766984.dkr.ecr.us-east-2.amazonaws.com/blacklistservice:latest
 
 ## Ejecutar local
 
-### Iniciar todos los servicios
+### Iniciar todos los servicios en el puerto por defecto
 ``` bash
  chmod +x scripts/local.sh
  ./scripts/local.sh
+
+```
+
+### Iniciar todos los servicios con un puerto personalizado (ejemplo 3000)
+``` bash
+ chmod +x scripts/local.sh
+ ./scripts/local.sh 3000
 
 ```
 
