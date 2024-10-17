@@ -3,6 +3,7 @@ from flask import Flask, jsonify
 from flask_restful import Api
 from app.models import db
 from app.routes import api_bp
+from flask_jwt_extended import JWTManager
 
 application = Flask(__name__)
 
@@ -16,6 +17,10 @@ application.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_pas
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(application)
+
+application.config["JWT_SECRET_KEY"] = 'compumundo_hiper_mega_red'
+application.config['JWT_TOKEN_LOCATION'] = ['headers']
+jwt = JWTManager(application)
 
 # Crear las tablas en la base de datos
 with application.app_context():

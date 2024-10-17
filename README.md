@@ -85,3 +85,10 @@ docker push 061039766984.dkr.ecr.us-east-2.amazonaws.com/blacklistservice:latest
 
 ```
 
+### Token necesario en los requests
+
+Los requests necesitan un token el cual es estatico por ahora y seria:
+
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.3J-lwqipiMTiRzWCEjuey3v-n7pjDTBV1FZBpHx6plI
+```
