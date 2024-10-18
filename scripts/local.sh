@@ -3,6 +3,9 @@
 # Navegar a la carpeta raíz del proyecto
 cd "$(dirname "$0")/.."
 
+# Verificar si se pasa por parámetros el puerto para Flask
+FLASK_PORT=${1:-5000}
+
 # Detener y eliminar cualquier contenedor existente de la base de datos o la aplicación
 echo "Eliminando contenedores existentes..."
 docker rm -f blacklist_db_container flask_app_blacklist 2>/dev/null || true
@@ -56,8 +59,8 @@ echo "Construyendo la imagen Docker para la aplicación Flask..."
 docker build -t blacklist_app .
 
 # Levantar el contenedor de la aplicación Flask
-echo "Levantando el contenedor de la aplicación Flask en el puerto 5000..."
-docker run -d -p 5000:5000 --name flask_app_blacklist blacklist_app
+echo "Levantando el contenedor de la aplicación Flask en el puerto $FLASK_PORT..."
+docker run -d -p ${FLASK_PORT}:${FLASK_PORT} --name flask_app_blacklist -e FLASK_PORT=$FLASK_PORT blacklist_app
 
 # Confirmar que el contenedor de la aplicación Flask está corriendo
 docker ps | grep flask_app_blacklist
