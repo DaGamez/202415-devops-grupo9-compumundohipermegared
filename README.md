@@ -6,7 +6,7 @@
 │   ├── models.py          # Definición de modelos (SQLAlchemy)
 │   ├── routes.py          # Definición de rutas (endpoints RESTful)
 │   └── utils.py           # Funciones auxiliares (ej. manejo de JWT, validaciones)
-│
+├── coleccion-postman      # .json con la colección de postman con la documentación del API
 ├── application.py         # Script principal para correr la aplicación
 ├── Dockerfile             # Dockerfile para empaquetar la app en un contenedor
 ├── requirements.txt       # Dependencias de la aplicación
