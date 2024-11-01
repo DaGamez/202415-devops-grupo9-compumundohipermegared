@@ -9,6 +9,7 @@ phases:
     commands:
       - export FLASK_ENV=testing
       - pytest tests/
+      - docker build -t compumundo-black-list-ci-container-image .
 artifacts:
   files:
-    - 'text.txt'
+    - 'compumundo-black-list-ci-container-image'
