@@ -29,11 +29,17 @@ aws iam list-users --output table
 #create code build project
 # idea es que construya una imagen de contenedor en un S3
 aws codebuild create-project \
-    --name compumundo-black-list-CI \
-    --source "{\"type\": \"GITHUB\", \"location\": \"https://github.com/DaGamez/202415-devops-grupo9-compumundohipermegared\"}" \
-    --artifacts "{\"type\": \"S3\"}" \
-    --environment "{\"type\": \"LINUX_CONTAINER\", \"image\": \"aws/codebuild/standard:6.0\", \"computeType\": \"BUILD_GENERAL1_SMALL\"}" \
-    --service-role "arn:aws:iam::miso-devops:role/service-role/codebuild-service-role" \
-    --buildspec buildspecCI.yml
+    --name "compumundo-black-list-CI" \
+    --source "{\"type\": \"GITHUB\",\"location\": \"https://github.com/DaGamez/202415-devops-grupo9-compumundohipermegared.git\",\"buildspec\": \"buildspec.yml\",\"gitCloneDepth\": 1,\"gitSubmodulesConfig\": {\"fetchSubmodules\": false},\"reportBuildStatus\": false}" \
+    --source-version "main" \
+    --artifacts "{\"type\": \"NO_ARTIFACTS\"}" \
+    --environment "{\"type\": \"LINUX_CONTAINER\",\"image\": \"aws/codebuild/standard:5.0\",\"computeType\": \"BUILD_GENERAL1_SMALL\"}" \
+    --service-role "arn:aws:iam::061039766984:role/service-role/codebuild-devops_grupo09-service-role" \
+    --timeout-in-minutes 5
 
+#listar codebuild projects
+aws codebuild list-projects --output table
+
+#delete codebuild project
+aws codebuild delete-project --name "compumundo-black-list-CI"
 
