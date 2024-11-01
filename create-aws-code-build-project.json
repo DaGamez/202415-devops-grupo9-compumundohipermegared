@@ -3,16 +3,21 @@
     "source": {
         "type": "GITHUB",
         "location": "https://github.com/DaGamez/202415-devops-grupo9-compumundohipermegared.git",
-        "buildspec": "buildspec.yml",
+        "buildspec": "buildspecCI.yml",
         "gitCloneDepth": 1,
         "gitSubmodulesConfig": {
             "fetchSubmodules": false
         },
-        "reportBuildStatus": false
+        "reportBuildStatus": false,
+        "auth": {
+            "type": "OAUTH",
+            "resource": "arn:aws:secretsmanager:us-west-2:061039766984:secret:token-github-devops-xNtSDh"
+        }
     },
-    "sourceVersion": "main",
+    "sourceVersion": "develop",
     "artifacts": {
-        "type": "NO_ARTIFACTS"
+        "type": "S3",
+        "location": "compumundo-black-list-s3"
     },
     "environment": {
         "type": "LINUX_CONTAINER",
@@ -20,6 +25,5 @@
         "computeType": "BUILD_GENERAL1_SMALL"
     },
     "serviceRole": "arn:aws:iam::061039766984:role/service-role/codebuild-devops_grupo09-service-role",
-    "timeoutInMinutes": 5,
-    "buildSpec": "buildspecCI.yml"
+    "timeoutInMinutes": 5
 }
