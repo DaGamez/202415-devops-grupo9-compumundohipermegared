@@ -7,9 +7,9 @@ phases:
       - pip install -r requirements.txt
       
   build:
-      on-failure: ABORT
-      commands:
-        - export FLASK_ENV=testing
+    on-failure: ABORT
+    commands:
+      - export FLASK_ENV=testing
       - set -e # exit on error
       - pytest tests/
       
