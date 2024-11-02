@@ -73,3 +73,5 @@ aws elasticbeanstalk create-application-version \
 #list elastic beanstalk applications
 aws elasticbeanstalk describe-applications --output table
 
+#delete elastic beanstalk application
+aws elasticbeanstalk delete-application --application-name "compumundo-black-list-CLI" --region us-west-2
