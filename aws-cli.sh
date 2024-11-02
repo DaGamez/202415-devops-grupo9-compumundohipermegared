@@ -38,8 +38,14 @@ aws s3api delete-bucket --bucket compumundo-black-list-s3 --region us-west-2
 # idea es que construya una imagen de contenedor en un S3
 aws codebuild create-project --cli-input-json file://create-aws-code-build-project.json
 
+#añadir webook
+aws codebuild create-webhook --project-name compumundo-black-list-CI --filter-groups "[[{\"type\":\"EVENT\",\"pattern\":\"PUSH\"},{\"type\":\"HEAD_REF\",\"pattern\":\"^refs/heads/develop$\"}]]"
+
 #listar codebuild projects
 aws codebuild list-projects --output table
+
+#get project details
+aws codebuild batch-get-projects --names "compumundo-black-list-CI"
 
 #comenzar build del proyecto
 aws codebuild start-build --project-name "compumundo-black-list-CI"
