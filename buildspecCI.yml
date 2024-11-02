@@ -26,5 +26,5 @@ phases:
 artifacts:
   files:
     #- docker-image.tar.gz
-    - text.txt
+    - app.zip
   name: docker-image-$(date +%Y-%m-%d_%H-%M)
