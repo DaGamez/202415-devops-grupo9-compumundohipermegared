@@ -10,7 +10,7 @@ phases:
     on-failure: ABORT
     commands:
       - export FLASK_ENV=testing
-      - set -e # exit on error
+      - set -e # exit on error1
       - pytest tests/
       
   post_build:
