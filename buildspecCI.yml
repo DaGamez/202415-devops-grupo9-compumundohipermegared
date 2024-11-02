@@ -20,7 +20,8 @@ phases:
       #- docker build -t compumundo-black-list-ci-container-image .
       #- docker save compumundo-black-list-ci-container-image:latest -o docker-image.tar
       #- gzip docker-image.tar
-      - touch text.txt
+      #create a zip file with the contents of the current directory
+      - zip -r app.zip .
 
 artifacts:
   files:
