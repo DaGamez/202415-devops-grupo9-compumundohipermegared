@@ -47,7 +47,7 @@ aws codebuild list-projects --output table
 #get project details
 aws codebuild batch-get-projects --names "compumundo-black-list-CI"
 
-#comenzar build del proyecto
+#comenzar build del proyecto 
 aws codebuild start-build --project-name "compumundo-black-list-CI"
 
 #build status con id del build del anterior paso
