@@ -59,3 +59,8 @@ aws codebuild batch-get-builds --ids "compumundo-black-list-CI:<id>"
 #delete codebuild project
 aws codebuild delete-project --name "compumundo-black-list-CI"
 
+#create elastic beanstalk application using a .tar.gz file
+aws elasticbeanstalk create-application \
+    --application-name "compumundo-black-list-CLI" \
+    --region us-west-2 \
+    --source-bundle S3Bucket="compumundo-black-list-s3",S3Key="compumundo-black-list-CI/docker-image.tar.gz"

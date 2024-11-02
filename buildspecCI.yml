@@ -8,11 +8,8 @@ phases:
   build:
     commands:
       - export FLASK_ENV=testing
-      - |
-        if ! pytest tests/; then
-          echo "Tests failed"
-          exit 1
-        fi
+      - set -e # exit on error
+      - pytest tests/
       
   post_build:
     commands:
