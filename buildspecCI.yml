@@ -2,29 +2,25 @@ version: 0.2
 
 phases:
   pre_build:
+    on-failure: ABORT
     commands:
       - pip install -r requirements.txt
       
   build:
-    commands:
-      - export FLASK_ENV=testing
+      on-failure: ABORT
+      commands:
+        - export FLASK_ENV=testing
       - set -e # exit on error
       - pytest tests/
       
   post_build:
+    on-failure: ABORT
     commands:
       # Save the Docker image as a tar file
       #- docker build -t compumundo-black-list-ci-container-image .
       #- docker save compumundo-black-list-ci-container-image:latest -o docker-image.tar
       #- gzip docker-image.tar
-      - |
-        if [ $CODEBUILD_BUILD_SUCCEEDING = 1 ]; then
-          echo "Build succeeded, running post-build steps"
-          touch text.txt
-        else
-          echo "Build failed, skipping post-build steps"
-          exit 1
-        fi
+      - touch text.txt
 
 artifacts:
   files:
