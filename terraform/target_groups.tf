@@ -45,3 +45,29 @@ resource "aws_lb_target_group" "target_group_2" {
     Name = "Target Group 2"
   }
 }
+
+# Production Listener (Port 80)
+resource "aws_lb_listener" "listener_production" {
+  load_balancer_arn = aws_lb.app_lb.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target_group_1.arn
+  }
+}
+
+# Test Listener (Port 8080)
+resource "aws_lb_listener" "listener_test" {
+  load_balancer_arn = aws_lb.app_lb.arn
+  port              = 8080
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target_group_2.arn
+  }
+}
+
+
