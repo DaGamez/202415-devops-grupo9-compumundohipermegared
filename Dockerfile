@@ -8,7 +8,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 ENV RDS_USERNAME=postgres
-ENV RDS_PASSWORD=postgres
+ENV RDS_PASSWORD=secret-database-password
 ENV RDS_HOSTNAME=postgres-instance.cl0qmecqm1hz.us-west-2.rds.amazonaws.com
 ENV RDS_DB_NAME=postgres
 ENV RDS_PORT=5432
