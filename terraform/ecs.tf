@@ -27,6 +27,26 @@ resource "aws_ecs_task_definition" "app_task" {
         {
           name  = "FLASK_ENV"
           value = "production"
+        },
+        {
+          name  = "RDS_HOSTNAME"
+          value = aws_db_instance.postgres.endpoint
+        },
+        {
+          name  = "RDS_PORT"
+          value = "5432"
+        },
+        {
+          name  = "RDS_DB_NAME"
+          value = "postgres"
+        },
+        {
+          name  = "RDS_USERNAME"
+          value = "postgres"
+        },
+        {
+          name  = "RDS_PASSWORD"
+          value = aws_db_instance.postgres.password
         }
       ]
       portMappings = [
@@ -69,5 +89,13 @@ resource "aws_ecs_service" "app_service" {
     target_group_arn = aws_lb_target_group.target_group_1.arn
     container_name   = "Container-app-python"
     container_port   = 5000
+  }
+
+  lifecycle {
+    ignore_changes = [
+      task_definition,
+      load_balancer,
+      network_configuration
+    ]
   }
 }
