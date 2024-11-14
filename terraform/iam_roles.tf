@@ -62,7 +62,9 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
           "s3:GetObjectVersion",
           "s3:GetBucketVersioning",
           "s3:PutObject",
-          "s3:ListBucket"
+          "s3:ListBucket",
+          "s3:PutObjectAcl",           
+          "s3:GetObjectAcl"
         ]
         Resource = [
           aws_s3_bucket.artifact_store.arn,
