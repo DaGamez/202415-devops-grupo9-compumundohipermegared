@@ -48,6 +48,39 @@ resource "aws_iam_role" "codepipeline_role" {
   })
 }
 
+resource "aws_iam_role_policy" "codepipeline_policy" {
+  name = "codepipeline-policy"
+  role = aws_iam_role.codepipeline_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:GetObjectVersion",
+          "s3:GetBucketVersioning",
+          "s3:PutObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          aws_s3_bucket.artifact_store.arn,
+          "${aws_s3_bucket.artifact_store.arn}/*"
+        ]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "codebuild:BatchGetBuilds",
+          "codebuild:StartBuild"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role" "codebuild_role" {
   name = "codebuild-role"
 
@@ -72,6 +105,16 @@ resource "aws_iam_role_policy" "codebuild_policy" {
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
+       {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": [
+                "arn:aws:s3:::python-app-pipeline-artifacts/*"
+        ]
+      },
       {
         Effect = "Allow"
         Action = [
