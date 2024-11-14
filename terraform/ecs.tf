@@ -2,7 +2,14 @@ resource "aws_ecs_cluster" "app_cluster" {
   name = "cluster-app-python"
 }
 
+resource "aws_cloudwatch_log_group" "ecs_logs" {
+  name              = "/ecs/ContainerAppPythonLogs"
+  retention_in_days = 30  # Adjust retention period as needed
+}
+
+
 resource "aws_ecs_task_definition" "app_task" {
+  depends_on = [aws_cloudwatch_log_group.ecs_logs]
   family                   = "python-app-task"
   requires_compatibilities = ["FARGATE"]
   network_mode            = "awsvpc"
