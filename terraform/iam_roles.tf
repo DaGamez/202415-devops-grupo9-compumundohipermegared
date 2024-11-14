@@ -85,6 +85,7 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
           "codedeploy:GetDeploymentConfig",
           "codedeploy:GetApplicationRevision",
           "codedeploy:RegisterApplicationRevision",
+          "codedeploy:GetApplication",
           "ecs:RegisterTaskDefinition",
           "iam:PassRole"
         ]

@@ -36,6 +36,7 @@ resource "aws_codepipeline" "ecr_pipeline" {
       owner           = "AWS"
       provider        = "CodeBuild"
       input_artifacts = ["source_output"]
+      output_artifacts = ["build_output"]
       version         = "1"
 
       configuration = {
@@ -52,7 +53,7 @@ resource "aws_codepipeline" "ecr_pipeline" {
       category        = "Deploy"
       owner           = "AWS"
       provider        = "CodeDeployToECS"
-      input_artifacts = ["source_output"]
+      input_artifacts = ["build_output"]
       version         = "1"
 
       configuration = {
