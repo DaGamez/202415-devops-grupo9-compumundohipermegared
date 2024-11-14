@@ -7,4 +7,8 @@ resource "aws_s3_bucket_versioning" "artifact_store_versioning" {
   versioning_configuration {
     status = "Enabled"
   }
+
+  lifecycle {
+    prevent_destroy = false  
+  }
 }

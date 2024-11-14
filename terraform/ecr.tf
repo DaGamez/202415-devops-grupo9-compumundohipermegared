@@ -9,6 +9,10 @@ resource "aws_ecr_repository" "python_app" {
   tags = {
     Name = "Python App Repository"
   }
+
+  lifecycle {
+    prevent_destroy = false  # Allow the resource to be destroyed
+  }
 }
 
 # Grant pull and push permissions to CodeBuild
