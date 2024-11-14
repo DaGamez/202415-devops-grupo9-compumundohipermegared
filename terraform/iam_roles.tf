@@ -76,6 +76,19 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
           "codebuild:StartBuild"
         ]
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "codedeploy:CreateDeployment",
+          "codedeploy:GetDeployment",
+          "codedeploy:GetDeploymentConfig",
+          "codedeploy:GetApplicationRevision",
+          "codedeploy:RegisterApplicationRevision",
+          "ecs:RegisterTaskDefinition",
+          "iam:PassRole"
+        ]
+        Resource = "*"
       }
     ]
   })
