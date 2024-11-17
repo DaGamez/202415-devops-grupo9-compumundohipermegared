@@ -32,7 +32,7 @@ def test_add_email_to_blacklist(client):
         'blocked_reason': 'spam'
     }
     response = client.post('/blacklists', data=json.dumps(data), headers=headers, content_type='application/json')
-    assert response.status_code == 400 #201
+    assert response.status_code == 201
     assert response.json['message'] == 'El email fue agregado a la lista negra'
 
 def test_add_duplicate_email(client):
