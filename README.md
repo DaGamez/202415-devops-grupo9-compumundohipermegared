@@ -30,6 +30,13 @@ Descripción de los archivos y carpetas:
 Esta estructura está pensada para facilitar el despliegue en Elastic Beanstalk, además de organizar adecuadamente el código.
 
 
+## Entrega 3 Ejecucion con Terraform
+Pasos:
+- Ir al folder de terraform
+- Ejecutar ```terraform init```
+- Ejecutar ```terraform plan```
+- Ejecutar ```terraform apply```
+
 ## Despliegue manual en Elastic Beanstalk
 
 - Comprimir en un zip: /app application.py requirements.txt .ebextensions
