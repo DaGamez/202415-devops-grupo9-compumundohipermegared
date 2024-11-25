@@ -96,7 +96,7 @@ docker push 061039766984.dkr.ecr.us-east-2.amazonaws.com/blacklistservice:latest
 ``` bash
  docker build -t blacklist_app .
  docker run -d -p 5000:5000 --name flask_app blacklist_app
-
+ docker run -d -p 5000:5000 -e FLASK_ENV=testing --name flask_app blacklist_app 
 ```
 
 ### Token necesario en los requests
