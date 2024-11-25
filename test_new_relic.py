@@ -34,7 +34,7 @@ def gradual_load_test(endpoint, start_rps, end_rps, duration, steps, headers=Non
 
 
 # Usage
-endpoint = "my-application-lb-1724135569.us-west-2.elb.amazonaws.com/blacklists"
+endpoint = "http://my-application-lb-1724135569.us-west-2.elb.amazonaws.com/blacklists"
 start_rps = 1
 end_rps = 1
 duration = 6000  # Total duration in seconds
