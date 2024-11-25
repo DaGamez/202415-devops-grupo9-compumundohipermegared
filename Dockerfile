@@ -18,7 +18,7 @@ CMD python3 application.py --port $FLASK_PORT
 
 ##Confguración New Relic
 RUN pip install newrelic
-ENV NEW_RELIC_APP_NAME="docker-flask-app"
+ENV NEW_RELIC_APP_NAME="docker-flask-app-prod"
 ENV NEW_RELIC_LOG=stdout
 ENV NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
 #INGEST_License
